@@ -10,3 +10,6 @@ I plan to filter the repos in several groups such as:
 - repos with commits waiting to be pushed
 - repos with staged files waiting for comments
 - repos with commits older than a certain time frame
+
+> **NOTE** : This has been put on hold to focus on the development of
+> [alleno-ora](https://github.com/ElPatatone/alleno-ora)
