@@ -50,24 +50,49 @@ int contains_git(const char *dir, char *git_directories[]) {
     return count;
 }
 
-void runGitStatus(const char *dir) {
+void runGitStatus(const char *dir, const char *start_directory) {
     char path[PATH_SIZE];
-    snprintf(path, sizeof(path), "%s/%s", getcwd(NULL, 0), dir);
-    printf("path: %s\n", path);
-    // chdir(path);  // Change to the directory for running git commands
-    // system("git status");
+    snprintf(path, sizeof(path), "%s/%s", start_directory, dir);
+    chdir(path);
+    system("git status > .git_status_output");
+
+    FILE *status_file = fopen(".git_status_output", "r");
+    if (status_file == NULL) {
+        perror("fopen");
+        return;
+    }
+
+    char line[PATH_SIZE];
+    int modified = 0;
+    int deleted = 0;
+
+    while (fgets(line, sizeof(line), status_file) != NULL) {
+        if (strstr(line, "modified:") || strstr(line, "deleted: ")) {
+            modified = 1;
+            break;
+        }
+    }
+
+    fclose(status_file);
+    remove(".git_status_output");
+
+    if (modified || deleted) {
+        printf("--------------------------------------------------------------------------------------\n");
+        printf("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n");
+        printf("--------------------------------------------------------------------------------------\n");
+        printf("\n\e[1mName: %s\e[0m\n", dir);
+        printf("\e[1mPath: %s\e[0m\n", path);
+        system("git status");
+    }
 }
 
 int main() {
-    const char *start_directory = "/home/elpatatone/Documents/";  // Starting directory (change as needed)
+    const char *start_directory = "/home/elpatatone/Documents";  // Starting directory (change as needed)
     char *git_directories[MAX_DIRS];
     int number_of_git_directories = contains_git(start_directory, git_directories);
-
     printf("Number of directories with a .git folder: %d\n", number_of_git_directories);
-    printf("Directories with a .git folder:\n");
     for (int i = 0; i < number_of_git_directories; i++) {
-        printf("Name: %s\n", git_directories[i]);
-        runGitStatus(git_directories[i]);
+        runGitStatus(git_directories[i], start_directory);
         free(git_directories[i]);
     }
 
