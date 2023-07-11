@@ -6,7 +6,6 @@
 
 #define MAX_DIRS 100
 #define PATH_SIZE 1024
-
 #ifndef DT_DIR
 #define DT_DIR 4
 #endif
@@ -87,12 +86,25 @@ void runGitStatus(const char *dir, const char *start_directory) {
 }
 
 int main() {
-    const char *start_directory = "/home/elpatatone/Documents";  // Starting directory (change as needed)
+
+    FILE *config_file;
+    char directory[100] = "";
+    config_file = fopen("config.txt", "r");
+    if (config_file != NULL) {
+        fgets(directory, sizeof(directory), config_file);
+        // Remove newline character if present
+        if (directory[strlen(directory) - 1] == '\n') {
+            directory[strlen(directory) - 1] = '\0';
+        }
+        fclose(config_file);
+    }
+
+    // const char *start_directory = "/home/elpatatone/Documents";  // Starting directory (change as needed)
     char *git_directories[MAX_DIRS];
-    int number_of_git_directories = contains_git(start_directory, git_directories);
+    int number_of_git_directories = contains_git(directory, git_directories);
     printf("Number of directories with a .git folder: %d\n", number_of_git_directories);
     for (int i = 0; i < number_of_git_directories; i++) {
-        runGitStatus(git_directories[i], start_directory);
+        runGitStatus(git_directories[i], directory);
         free(git_directories[i]);
     }
 
