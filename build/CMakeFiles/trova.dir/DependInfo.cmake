@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/elpatatone/Documents/trova-git/src/main.c" "CMakeFiles/trova.dir/main.c.o" "gcc" "CMakeFiles/trova.dir/main.c.o.d"
+  "/home/elpatatone/Programming/trova-git/src/main.c" "CMakeFiles/trova.dir/main.c.o" "gcc" "CMakeFiles/trova.dir/main.c.o.d"
   )
 
 # Targets to which this target links.

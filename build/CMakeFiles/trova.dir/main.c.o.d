@@ -1,5 +1,5 @@
 CMakeFiles/trova.dir/main.c.o: \
- /home/elpatatone/Documents/trova-git/src/main.c \
+ /home/elpatatone/Programming/trova-git/src/main.c \
  /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
