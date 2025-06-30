@@ -117,24 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named trova
+# Target rules for targets named main
 
 # Build rule for target.
-trova: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 trova
-.PHONY : trova
+main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
+.PHONY : main
 
 # fast build rule for target.
-trova/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/trova.dir/build.make CMakeFiles/trova.dir/build
-.PHONY : trova/fast
+main/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
+.PHONY : main/fast
 
 main.o: main.c.o
 .PHONY : main.o
 
 # target to build an object file
 main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/trova.dir/build.make CMakeFiles/trova.dir/main.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.c.o
 .PHONY : main.c.o
 
 main.i: main.c.i
@@ -142,7 +142,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/trova.dir/build.make CMakeFiles/trova.dir/main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -150,7 +150,7 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/trova.dir/build.make CMakeFiles/trova.dir/main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.c.s
 .PHONY : main.c.s
 
 # Help Target
@@ -161,7 +161,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... trova"
+	@echo "... main"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
